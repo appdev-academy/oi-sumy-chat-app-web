@@ -22,14 +22,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="h-screen flex flex-col">
     <nav class="container mx-auto flex justify-between">
       <h2 class="font-semibold text-3xl">Welcome to Chat App!</h2>
       <% if Current.user.present? %>
         <%= button_to "Sign out", session_path, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer" %>
       <% end %>
     </nav>
-    <main class="container mx-auto mt-28 flex">
+    <main class="container mx-auto flex flex-col flex-1 min-h-0">
       <%= yield %>
     </main>
   </body>

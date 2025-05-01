@@ -25,7 +25,17 @@ class MessagesController < ApplicationController
     @message.user = Current.user
 
     if @message.save
-      redirect_to @message, notice: "Message was successfully created."
+      respond_to do |format|
+        format.html do
+          redirect_to @message, notice: "Message was successfully created."
+        end
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.append("messages", partial: "messages/message", locals: { message: @message }),
+            turbo_stream.update("new_message", partial: "messages/form", locals: { message: Message.new })
+          ]
+        end
+      end
     else
       render :new, status: :unprocessable_entity
     end
