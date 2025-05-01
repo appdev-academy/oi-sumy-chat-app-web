@@ -22,6 +22,7 @@ class MessagesController < ApplicationController
   # POST /messages
   def create
     @message = Message.new(message_params)
+    @message.user = Current.user
 
     if @message.save
       redirect_to @message, notice: "Message was successfully created."
