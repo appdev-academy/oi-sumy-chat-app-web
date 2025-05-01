@@ -30,10 +30,11 @@ class MessagesController < ApplicationController
           redirect_to @message, notice: "Message was successfully created."
         end
         format.turbo_stream do
+          Turbo::StreamsChannel.broadcast_append_to "chat", target: "messages", partial: "messages/message", locals: { message: @message }
+          Turbo::StreamsChannel.broadcast_action_to "chat", action: "scroll_to", target: "message_#{@message.id}"
+
           render turbo_stream: [
-            turbo_stream.append("messages", partial: "messages/message", locals: { message: @message }),
-            turbo_stream.update("new_message", partial: "messages/form", locals: { message: Message.new }),
-            turbo_stream.action("scroll_to", "message_#{@message.id}")
+            turbo_stream.update("new_message", partial: "messages/form", locals: { message: Message.new })
           ]
         end
       end

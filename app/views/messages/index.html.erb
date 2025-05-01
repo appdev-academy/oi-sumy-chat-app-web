@@ -5,6 +5,8 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+  <%= turbo_stream_from 'chat' %>
+
   <div id="messages" data-controller="scroll-to-bottom-of-messages" class="min-w-full divide-y divide-gray-200 space-y-5 flex-1 overflow-y-auto">
     <%= render @messages %>
   </div>
