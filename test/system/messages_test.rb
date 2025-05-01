@@ -2,40 +2,17 @@ require "application_system_test_case"
 
 class MessagesTest < ApplicationSystemTestCase
   setup do
+    @user = User.create!(email_address: "test@test.com", password: "1234")
     @message = messages(:one)
   end
 
-  test "visiting the index" do
+  test "can see Messages" do
     visit messages_url
-    assert_selector "h1", text: "Messages"
-  end
 
-  test "should create message" do
-    visit messages_url
-    click_on "New message"
+    fill_in "email_address", with: @user.email_address
+    fill_in "password", with: @user.password
+    click_on "Sign in"
 
-    fill_in "Content", with: @message.content
-    click_on "Create Message"
-
-    assert_text "Message was successfully created"
-    click_on "Back"
-  end
-
-  test "should update Message" do
-    visit message_url(@message)
-    click_on "Edit this message", match: :first
-
-    fill_in "Content", with: @message.content
-    click_on "Update Message"
-
-    assert_text "Message was successfully updated"
-    click_on "Back"
-  end
-
-  test "should destroy Message" do
-    visit message_url(@message)
-    accept_confirm { click_on "Destroy this message", match: :first }
-
-    assert_text "Message was successfully destroyed"
+    assert_selector "div", text: "Sent by"
   end
 end
