@@ -32,7 +32,8 @@ class MessagesController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.append("messages", partial: "messages/message", locals: { message: @message }),
-            turbo_stream.update("new_message", partial: "messages/form", locals: { message: Message.new })
+            turbo_stream.update("new_message", partial: "messages/form", locals: { message: Message.new }),
+            turbo_stream.action("scroll_to", "message_#{@message.id}")
           ]
         end
       end
