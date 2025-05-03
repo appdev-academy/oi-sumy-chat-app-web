@@ -1,0 +1,4 @@
+CREATE DATABASE chat_app_production;
+CREATE DATABASE chat_app_production_cache;
+CREATE DATABASE chat_app_production_queue;
+CREATE DATABASE chat_app_production_cable;
