@@ -2,5 +2,9 @@
 
 class UserBlueprint < Blueprinter::Base
   identifier :id
-  fields :email_address, :jwt_token
+  field :email_address
+
+  view :extended do
+    field :jwt_token
+  end
 end

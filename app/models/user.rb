@@ -8,6 +8,6 @@ class User < ApplicationRecord
   validates :email_address, uniqueness: true
 
   def jwt_token
-    JWT.encode({ id: self.id, issued_at: Time.current.to_i }, Rails.application.credentials.jwt_token)
+    JWT.encode({ id: self.id, issued_at: Time.current.to_i }, Rails.application.credentials.jwt_secret)
   end
 end
