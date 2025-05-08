@@ -1,4 +1,4 @@
-<div id="<%= dom_id message %>" class="w-full sm:w-auto my-5 space-y-5">
-  Sent by <strong class="font-medium"><%= message.user.email_address.split('@').first %></strong> at <%= message.created_at.iso8601 %>
+<div id="<%= dom_id message %>" class="w-full sm:w-auto space-y-5">
+  Sent by <strong class="font-medium"><%= message.user.username %></strong> at <%= message.created_at.in_time_zone("Europe/Kyiv").strftime("%H:%M") %>
   <p><%= message.content %></p>
 </div>
