@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :messages, only: [ :index, :create ]
+      resources :sessions, only: [ :create ]
+      resources :users, only: [ :create ]
+    end
+  end
   resource :session
   resources :passwords, param: :token
   resources :messages
