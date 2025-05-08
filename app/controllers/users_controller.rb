@@ -2,10 +2,12 @@ class UsersController < ApplicationController
   allow_unauthenticated_access only: [ :new, :create ]
   before_action :resume_session, only: [ :new, :create ]
 
+  # @route GET /users/new (new_user)
   def new
     @user = User.new
   end
 
+  # @route POST /users (users)
   def create
     @user = User.new(user_params)
     if @user.save

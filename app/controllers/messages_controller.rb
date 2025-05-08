@@ -1,25 +1,26 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
 
-  # GET /messages
+  # @route GET /messages (messages)
+  # @route GET / (root)
   def index
     @messages = Message.all
   end
 
-  # GET /messages/1
+  # @route GET /messages/:id (message)
   def show
   end
 
-  # GET /messages/new
+  # @route GET /messages/new (new_message)
   def new
     @message = Message.new
   end
 
-  # GET /messages/1/edit
+  # @route GET /messages/:id/edit (edit_message)
   def edit
   end
 
-  # POST /messages
+  # @route POST /messages (messages)
   def create
     @message = Message.new(message_params)
     @message.user = Current.user
@@ -43,7 +44,8 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /messages/1
+  # @route PATCH /messages/:id (message)
+  # @route PUT /messages/:id (message)
   def update
     if @message.update(message_params)
       redirect_to @message, notice: "Message was successfully updated.", status: :see_other
@@ -52,7 +54,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # DELETE /messages/1
+  # @route DELETE /messages/:id (message)
   def destroy
     @message.destroy!
     redirect_to messages_path, notice: "Message was successfully destroyed.", status: :see_other
