@@ -28,14 +28,14 @@ class MessagesController < ApplicationController
     if @message.save
       respond_to do |format|
         format.html do
-          redirect_to @message, notice: "Message was successfully created."
+          redirect_to @message, notice: 'Message was successfully created.'
         end
         format.turbo_stream do
-          Turbo::StreamsChannel.broadcast_append_to "chat", target: "messages", partial: "messages/message", locals: { message: @message }
-          Turbo::StreamsChannel.broadcast_action_to "chat", action: "scroll_to", target: "message_#{@message.id}"
+          Turbo::StreamsChannel.broadcast_append_to 'chat', target: 'messages', partial: 'messages/message', locals: { message: @message }
+          Turbo::StreamsChannel.broadcast_action_to 'chat', action: 'scroll_to', target: "message_#{@message.id}"
 
           render turbo_stream: [
-            turbo_stream.update("new_message", partial: "messages/form", locals: { message: Message.new })
+            turbo_stream.update('new_message', partial: 'messages/form', locals: { message: Message.new })
           ]
         end
       end
@@ -48,7 +48,7 @@ class MessagesController < ApplicationController
   # @route PUT /messages/:id (message)
   def update
     if @message.update(message_params)
-      redirect_to @message, notice: "Message was successfully updated.", status: :see_other
+      redirect_to @message, notice: 'Message was successfully updated.', status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
   # @route DELETE /messages/:id (message)
   def destroy
     @message.destroy!
-    redirect_to messages_path, notice: "Message was successfully destroyed.", status: :see_other
+    redirect_to messages_path, notice: 'Message was successfully destroyed.', status: :see_other
   end
 
   private
@@ -68,6 +68,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.expect(message: [ :content ])
+      params.expect(message: [:content])
     end
 end

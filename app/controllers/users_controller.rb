@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  allow_unauthenticated_access only: [ :new, :create ]
-  before_action :resume_session, only: [ :new, :create ]
+  allow_unauthenticated_access only: [:new, :create]
+  before_action :resume_session, only: [:new, :create]
 
   # @route GET /users/new (new_user)
   def new
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       start_new_session_for @user
-      redirect_to messages_path, notice: "You have signed up!"
+      redirect_to messages_path, notice: 'You have signed up!'
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,6 +21,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.expect(user: [ :email_address, :password, :password_confirmation ])
+    params.expect(user: [:email_address, :password, :password_confirmation])
   end
 end
