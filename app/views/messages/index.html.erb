@@ -1,5 +1,7 @@
 <% content_for :title, "Messages" %>
 
+<%= turbo_frame_tag 'confetti' %>
+
 <div class="w-full flex flex-col flex-1 min-h-0">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>

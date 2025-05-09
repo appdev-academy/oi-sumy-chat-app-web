@@ -1,0 +1,14 @@
+<script>
+  if (typeof jsConfetti === 'undefined') {
+    const jsConfetti = new JSConfetti();
+    jsConfetti.addConfetti({
+      emojis: ["🔥", "🇺🇦", "🎉", "💾", "💻", "💽", "🚀", "😂", "👾", "📚", "💼", "🥳", "🎊"],
+      emojiSize: 150,
+    });
+  } else {
+    jsConfetti.addConfetti({
+      emojis: ["🔥", "🇺🇦", "🎉", "💾", "💻", "💽", "🚀", "😂", "👾", "📚", "💼", "🥳", "🎊"],
+      emojiSize: 150,
+    }).then(() => jsConfetti.clearCanvas());
+  }
+</script>
