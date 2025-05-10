@@ -1,0 +1,2 @@
+module AutoregistrationsHelper
+end
