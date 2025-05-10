@@ -20,6 +20,8 @@ class User < ApplicationRecord
   private
 
   def set_username
+    return if self.username
+
     self.username = User.generate_username
   end
 end
